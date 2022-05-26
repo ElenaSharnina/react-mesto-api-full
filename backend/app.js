@@ -19,18 +19,30 @@ const { PORT = 3000 } = process.env;
 
 const app = express();
 
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cookieParser());
+
 app.use(cors({
   origin: [
     'https://mesto.students.nomoreparties.sbs',
     'http://mesto.students.nomoreparties.sbs', // ну а вдруг у меня сертификат закончится
     'localhost:3000',
   ],
+  allowedHeaders: ['Content-Type', 'Authorization', 'Access-Control-Allow-Methods', 'Access-Control-Request-Headers'],
+  credentials: true,
+  enablePreflight: true,
 }));
-
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(cookieParser());
-
+app.options('*', cors({
+  origin: [
+    'https://mesto.students.nomoreparties.sbs',
+    'http://mesto.students.nomoreparties.sbs', // ну а вдруг у меня сертификат закончится
+    'localhost:3000',
+  ],
+  allowedHeaders: ['Content-Type', 'Authorization', 'Access-Control-Allow-Methods', 'Access-Control-Request-Headers'],
+  credentials: true,
+  enablePreflight: true,
+}));
 app.get('/crash-test', () => {
   setTimeout(() => {
     throw new Error('Сервер сейчас упадёт');

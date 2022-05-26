@@ -10,6 +10,7 @@ export const objConfig = {
 export const apiConfig = {
   url: 'https://api.mesto.students.nomoreparties.sbs',
   headers: {
-    'Content-Type': 'application/json'
+    'Content-Type': 'application/json',
+    authorization: `Bearer ${localStorage.getItem('token')}`,
   }
 }
