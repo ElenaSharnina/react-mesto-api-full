@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
@@ -17,7 +18,13 @@ const { requestLogger, errorLogger } = require('./middlewares/Logger');
 const { PORT = 3000 } = process.env;
 
 const app = express();
-
+app.use(cors({
+  credentials: true,
+  origin: [
+    'https://mesto.students.nomoreparties.sbs',
+    'http://mesto.students.nomoreparties.sbs', // ну а вдруг у меня сертификат закончится
+  ],
+}));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());

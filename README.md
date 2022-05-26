@@ -42,8 +42,9 @@ listen 80;
 
         root /home/heavyrain/react-mesto-api-full/frontend;
 
-                #location / {
-                # Тут будут настройки для фронтенда
-                #}
+                location / {
 
+try_files $uri $uri/ /index.html;
 }
+
+## }
