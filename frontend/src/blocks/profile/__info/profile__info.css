@@ -1,0 +1,7 @@
+.profile__info {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  padding-top: 22px;
+  padding-bottom: 25px;
+}

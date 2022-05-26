@@ -1,0 +1,11 @@
+.modal__button_disabled {
+  background-color: #e5e5e5;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 22px;
+  text-align: center;
+  color: #000000;
+  pointer-events: none;
+  user-select: none;
+}

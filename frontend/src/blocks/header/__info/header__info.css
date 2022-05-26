@@ -1,0 +1,16 @@
+.header__info {
+  display: flex;
+  align-items: center;
+}
+
+@media screen and (max-width: 500px) {
+  .header__info {
+    display: none;
+  }
+
+}
+
+.header__info-sign {
+  display: flex;
+  align-items: center;
+}

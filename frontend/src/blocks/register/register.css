@@ -1,0 +1,97 @@
+.register {
+  display: flex;
+  flex-direction: column;
+  margin: 60px auto 80px auto;
+  width: 358px;
+}
+
+.register__title {
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 29px;
+  text-align: center;
+  color: #FFFFFF;
+  margin: 0 0 50px 0;
+  padding: 0;
+}
+
+
+
+.register__field {
+  margin-bottom: 5px;
+  border-bottom: 2px solid rgba(204, 204, 204, 1);
+  border-top: 0;
+  border-left: 0;
+  border-right: 0;
+  font-size: 14px;
+  line-height: 17px;
+  color: #FFFFFF;
+  padding-bottom: 12px;
+  width: 100%;
+  background-color: inherit;
+
+}
+
+.register__field:last-of-type {
+  margin-top: 30px;
+}
+
+.register__button {
+  margin-top: 216px;
+  width: 100%;
+  height: 50px;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  text-align: center;
+  color: #000000;
+  border-radius: 2px;
+}
+
+.register__button:hover {
+  opacity: 0.85;
+  cursor: pointer;
+}
+
+.register__open-button {
+  background-color: inherit;
+  width: 100%;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  text-align: center;
+  color: #FFFFFF;
+  margin: 15px auto;
+  border: none;
+  padding: 0;
+}
+
+.register__open-button:hover {
+  opacity: 0.85;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 500px) {
+  .register {
+    width: 80%;
+    margin: 40px auto 70px auto;
+  }
+
+  .register__title {
+    font-size: 20px;
+    line-height: 24px;
+    margin-bottom: 5px;
+  }
+
+  .register__field {
+    margin-bottom: 0;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+  }
+
+  .register__button {
+    margin-top: 170px;
+
+  }
+}

@@ -1,0 +1,6 @@
+.modal-card__image {
+  box-sizing: border-box;
+  object-fit: cover;
+  max-height: 75vh;
+  max-width: 75vw;
+}
