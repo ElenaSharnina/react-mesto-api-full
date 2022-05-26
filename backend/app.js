@@ -18,16 +18,24 @@ const { requestLogger, errorLogger } = require('./middlewares/Logger');
 const { PORT = 3000 } = process.env;
 
 const app = express();
+
 app.use(cors({
-  credentials: true,
   origin: [
     'https://mesto.students.nomoreparties.sbs',
     'http://mesto.students.nomoreparties.sbs', // ну а вдруг у меня сертификат закончится
+    'localhost:3000',
   ],
 }));
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
+
+app.get('/crash-test', () => {
+  setTimeout(() => {
+    throw new Error('Сервер сейчас упадёт');
+  }, 0);
+});
 
 app.post('/signup', celebrate({
   body: Joi.object().keys({
