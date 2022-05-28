@@ -36,15 +36,17 @@ function App() {
   React.useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
-      api
-        .getInitialCards()
-        .then((data) => {
-          console.log(data);
-          setCards(data);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+      setTimeout(() => {
+        api
+          .getInitialCards()
+          .then((data) => {
+            console.log(data);
+            setCards(data);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      }, 300);
     }
   }, [loggedIn]);
 
