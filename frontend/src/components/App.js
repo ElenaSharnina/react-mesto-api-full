@@ -208,7 +208,7 @@ function App() {
         }
       });
     }
-  }, []);
+  }, [history, loggedIn]);
 
   function closeInfoTooltip() {
     setIsInfoTooltipOpen(false);
