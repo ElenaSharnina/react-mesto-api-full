@@ -39,6 +39,7 @@ function App() {
       api
         .getInitialCards()
         .then((data) => {
+          console.log(data);
           setCards(data);
         })
         .catch((err) => {
@@ -48,7 +49,8 @@ function App() {
   }, []);
 
   function handleCardLike(card) {
-    const isLiked = card.likes.some((i) => i._id === currentUser._id);
+    console.log(card.likes);
+    const isLiked = card.likes.some((i) => i === currentUser._id);
     if (!isLiked) {
       api
         .like(card._id)
@@ -91,6 +93,7 @@ function App() {
         .getUserInfoApi()
         .then((data) => {
           setCurrentUser(data);
+          console.log(data);
         })
         .catch((err) => {
           console.log(err);
@@ -127,7 +130,8 @@ function App() {
     api
       .setUserInfoApi(name, about)
       .then((data) => {
-        setCurrentUser(data);
+        setCurrentUser(data.data);
+        console.log(data);
         closeAllPopups();
       })
       .catch((err) => {
@@ -139,7 +143,7 @@ function App() {
     api
       .changeAvatar(avatar)
       .then((data) => {
-        setCurrentUser(data);
+        setCurrentUser(data.data);
         closeAllPopups();
       })
       .catch((err) => {
@@ -195,7 +199,7 @@ function App() {
     if (token) {
       auth.checkToken(token).then((data) => {
         if (data) {
-          setEmail(data.data.email);
+          setEmail(data.email);
           setLoggedIn(true);
           history.push("/");
         } else {

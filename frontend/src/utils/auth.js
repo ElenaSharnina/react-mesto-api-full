@@ -1,4 +1,4 @@
-export const BASE_URL = "https://api.mesto.students.nomoreparties.sbs";
+export const BASE_URL = "http://localhost:3000";
 
 export function register(email, password) {
   return fetch(`${BASE_URL}/signup`, {
@@ -39,11 +39,10 @@ export function checkToken(token) {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
+      authorization: `Bearer ${token}`,
     },
   })
     .then((res) => res.json())
-    .then((data) => data)
 
     .catch((err) => console.log(err));
 }
