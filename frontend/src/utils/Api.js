@@ -3,7 +3,6 @@ import { apiConfig } from "./constants.js";
 export class Api {
   constructor(apiConfig) {
     this._url = apiConfig.url;
-    this._headers = apiConfig.headers;
   }
 
   _checkResponse(res) {
@@ -14,18 +13,24 @@ export class Api {
     return Promise.reject(`Что-то пошло не так: ${res.status}`);
   }
 
-  getUserInfoApi() {
+  getUserInfoApi(token) {
     return fetch(`${this._url}/users/me`, {
       method: "GET",
-      headers: this._headers
+      headers: {
+        "Content-Type": "application/json",
+        authorization: `Bearer ${token}`
+      },
     })
       .then(this._checkResponse);
   }
 
-  getInitialCards() {
+  getInitialCards(token) {
     return fetch(`${this._url}/cards`, {
       method: "GET",
-      headers: this._headers
+      headers: {
+        "Content-Type": "application/json",
+        authorization: `Bearer ${token}`
+      },
     })
       .then(this._checkResponse);
   }
@@ -33,7 +38,10 @@ export class Api {
   setUserInfoApi(username, userjob) {
     return fetch(`${this._url}/users/me`, {
       method: 'PATCH',
-      headers: this._headers,
+      headers: {
+        "Content-Type": "application/json",
+        authorization: `Bearer ${localStorage.getItem('token')}`
+      },
 
       body: JSON.stringify({
         name: username,
@@ -46,7 +54,10 @@ export class Api {
   addNewCard(cardname, cardlink) {
     return fetch(`${this._url}/cards`, {
       method: 'POST',
-      headers: this._headers,
+      headers: {
+        "Content-Type": "application/json",
+        authorization: `Bearer ${localStorage.getItem('token')}`
+      },
 
       body: JSON.stringify({
         name: cardname,
@@ -60,7 +71,10 @@ export class Api {
   like(id) {
     return fetch(`${this._url}/cards/${id}/likes`, {
       method: 'PUT',
-      headers: this._headers,
+      headers: {
+        "Content-Type": "application/json",
+        authorization: `Bearer ${localStorage.getItem('token')}`
+      },
     })
       .then(this._checkResponse);
   }
@@ -68,7 +82,10 @@ export class Api {
   dislike(id) {
     return fetch(`${this._url}/cards/${id}/likes`, {
       method: 'DELETE',
-      headers: this._headers,
+      headers: {
+        "Content-Type": "application/json",
+        authorization: `Bearer ${localStorage.getItem('token')}`
+      },
     })
       .then(this._checkResponse);
   }
@@ -77,7 +94,10 @@ export class Api {
   deleteCard(id) {
     return fetch(`${this._url}/cards/${id}`, {
       method: 'DELETE',
-      headers: this._headers,
+      headers: {
+        "Content-Type": "application/json",
+        authorization: `Bearer ${localStorage.getItem('token')}`
+      },
 
     })
       .then(this._checkResponse);
@@ -86,7 +106,10 @@ export class Api {
   changeAvatar(avatar) {
     return fetch(`${this._url}/users/me/avatar`, {
       method: 'PATCH',
-      headers: this._headers,
+      headers: {
+        "Content-Type": "application/json",
+        authorization: `Bearer ${localStorage.getItem('token')}`
+      },
 
       body: JSON.stringify({
         avatar: avatar

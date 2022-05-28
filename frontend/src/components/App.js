@@ -34,19 +34,59 @@ function App() {
   const [email, setEmail] = React.useState("");
 
   React.useEffect(() => {
-    // const token = localStorage.getItem("token");
-    if (loggedIn) {
-      setTimeout(() => {
-        api
-          .getInitialCards()
-          .then((data) => {
-            console.log(data);
-            setCards(data);
-          })
-          .catch((err) => {
-            console.log(err);
-          });
-      }, 300);
+    const token = localStorage.getItem("token");
+    if (token) {
+      auth.checkToken(token).then((data) => {
+        if (data) {
+          setEmail(data.email);
+          setLoggedIn(true);
+          history.push("/");
+        } else {
+          console.log("error");
+        }
+      });
+    }
+  }, [history, loggedIn]);
+
+  function handleRegister({ email, password }) {
+    auth.register(email, password).then((res) => {
+      console.log(res);
+      if (res.data) {
+        setIsSuccess(true);
+        setIsInfoTooltipOpen(true);
+      } else {
+        setIsSuccess(false);
+        setIsInfoTooltipOpen(true);
+      }
+    });
+  }
+
+  function handleLogin({ email, password }) {
+    auth.authorize(email, password).then((res) => {
+      console.log(res);
+      if (res) {
+        setLoggedIn(true);
+        setEmail(email);
+        history.push("/");
+      } else {
+        setIsSuccess(false);
+        setIsInfoTooltipOpen(true);
+      }
+    });
+  }
+
+  React.useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      api
+        .getInitialCards(token)
+        .then((data) => {
+          console.log(data);
+          setCards(data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     }
   }, [loggedIn]);
 
@@ -88,10 +128,10 @@ function App() {
   }
 
   React.useEffect(() => {
-    // const token = localStorage.getItem("token");
-    if (loggedIn) {
+    const token = localStorage.getItem("token");
+    if (token) {
       api
-        .getUserInfoApi()
+        .getUserInfoApi(token)
         .then((data) => {
           setCurrentUser(data);
           console.log(data);
@@ -167,50 +207,6 @@ function App() {
   function handleLoggedIn() {
     setLoggedIn(true);
   }
-
-  function handleRegister({ email, password }) {
-    auth.register(email, password).then((res) => {
-      console.log(res);
-      if (res.data) {
-        setIsSuccess(true);
-        setIsInfoTooltipOpen(true);
-
-      } else {
-        setIsSuccess(false);
-        setIsInfoTooltipOpen(true);
-      }
-    });
-  }
-
-
-  function handleLogin({ email, password }) {
-    auth.authorize(email, password).then((res) => {
-      console.log(res);
-      if (res) {
-        setEmail(email);
-        setLoggedIn(true);
-        history.push("/");
-      } else {
-        setIsSuccess(false);
-        setIsInfoTooltipOpen(true);
-      }
-    });
-  }
-
-  React.useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (token) {
-      auth.checkToken(token).then((data) => {
-        if (data) {
-          setEmail(data.email);
-          setLoggedIn(true);
-          history.push("/");
-        } else {
-          console.log("error");
-        }
-      });
-    }
-  }, [history, loggedIn]);
 
   function closeInfoTooltip() {
     setIsInfoTooltipOpen(false);

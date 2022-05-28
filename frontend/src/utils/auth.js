@@ -14,11 +14,10 @@ export const register = (email, password) => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ email, password }),
-  })
-    .then(checkResponse);
-}
+  }).then(checkResponse);
+};
 
-export function authorize(email, password) {
+export const authorize = (email, password) => {
   return fetch(`${BASE_URL}/signin`, {
     method: "POST",
     headers: {
@@ -31,11 +30,11 @@ export function authorize(email, password) {
       if (data.token) {
         console.log(data.token);
         localStorage.setItem("token", data.token);
-        return data;
+        return data.token;
       }
     })
     .catch((err) => console.log(err));
-}
+};
 export function checkToken(token) {
   return fetch(`${BASE_URL}/users/me`, {
     method: "GET",
