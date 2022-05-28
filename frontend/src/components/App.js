@@ -34,8 +34,8 @@ function App() {
   const [email, setEmail] = React.useState("");
 
   React.useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (token) {
+    // const token = localStorage.getItem("token");
+    if (loggedIn) {
       setTimeout(() => {
         api
           .getInitialCards()
@@ -88,8 +88,8 @@ function App() {
   }
 
   React.useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (token) {
+    // const token = localStorage.getItem("token");
+    if (loggedIn) {
       api
         .getUserInfoApi()
         .then((data) => {
