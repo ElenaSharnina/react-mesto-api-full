@@ -1,4 +1,4 @@
-export const BASE_URL = "http://api.mesto.students.nomoreparties.sbs";
+export const BASE_URL = "https://api.mesto.students.nomoreparties.sbs";
 
 function checkResponse(res) {
   if (res.status === 200 || 201) {
