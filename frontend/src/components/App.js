@@ -49,7 +49,6 @@ function App() {
   }, []);
 
   function handleCardLike(card) {
-    console.log(card.likes);
     const isLiked = card.likes.some((i) => i === currentUser._id);
     if (!isLiked) {
       api
@@ -173,6 +172,7 @@ function App() {
       if (res.data) {
         setIsSuccess(true);
         setIsInfoTooltipOpen(true);
+
       } else {
         setIsSuccess(false);
         setIsInfoTooltipOpen(true);
@@ -188,6 +188,7 @@ function App() {
         setEmail(email);
         setLoggedIn(true);
         history.push("/");
+        window.location.reload();
       } else {
         setIsSuccess(false);
         setIsInfoTooltipOpen(true);
@@ -196,19 +197,18 @@ function App() {
   }
 
   React.useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (token) {
-      auth.checkToken(token).then((data) => {
-        if (data) {
-          setEmail(data.email);
-          setLoggedIn(true);
-          history.push("/");
-        } else {
-          console.log("error");
-        }
-      });
-    }
-  }, []);
+    auth.checkToken().then((data) => {
+      if (data) {
+        setEmail(data.email);
+        setLoggedIn(true);
+        history.push("/");
+      } else {
+        setLoggedIn(false);
+        console.log("error");
+      }
+    });
+
+  }, [history, loggedIn]);
 
   function closeInfoTooltip() {
     setIsInfoTooltipOpen(false);

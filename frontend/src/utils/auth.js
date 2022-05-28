@@ -29,6 +29,7 @@ export function authorize(email, password) {
     .then((response) => response.json())
     .then((data) => {
       if (data.token) {
+        console.log(data.token);
         localStorage.setItem("token", data.token);
         return data;
       }
@@ -44,6 +45,6 @@ export function checkToken(token) {
     },
   })
     .then((res) => res.json())
-
+    .then((data) => data)
     .catch((err) => console.log(err));
 }
