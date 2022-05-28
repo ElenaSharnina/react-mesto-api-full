@@ -46,7 +46,7 @@ function App() {
           console.log(err);
         });
     }
-  }, []);
+  }, [loggedIn]);
 
   function handleCardLike(card) {
     const isLiked = card.likes.some((i) => i === currentUser._id);
@@ -98,7 +98,7 @@ function App() {
           console.log(err);
         });
     }
-  }, []);
+  }, [loggedIn]);
 
   function handleEditProfileClick() {
     setIsEditProfilePopupOpen(true);
@@ -188,7 +188,6 @@ function App() {
         setEmail(email);
         setLoggedIn(true);
         history.push("/");
-        window.location.reload();
       } else {
         setIsSuccess(false);
         setIsInfoTooltipOpen(true);
