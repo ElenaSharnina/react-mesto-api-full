@@ -19,31 +19,16 @@ const { PORT = 3000 } = process.env;
 
 const app = express();
 
-const corsOptions = {
-  origin: [
+app.use(cors({
+  origin: ['http://localhost:3001',
     'https://mesto.students.nomoreparties.sbs',
-    'http://mesto.students.nomoreparties.sbs', // ну а вдруг у меня сертификат закончится
-    'localhost:3000',
-  ],
-  credentials: true, // access-control-allow-credentials:true
-  optionSuccessStatus: 200,
-  enablePreflight: true,
-  allowedHeaders: ['Content-Type', 'Authorization', 'Access-Control-Allow-Methods', 'Access-Control-Request-Headers'],
-};
-
-app.use(cors(corsOptions)); // Use this after the variable declaration
+    'http://mesto.students.nomoreparties.sbs'], // ну а вдруг у меня сертификат закончится,
+  credentials: true,
+}));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
-
-// app.use(cors({
-//   origin: [
-//     'https://mesto.students.nomoreparties.sbs',
-//     'http://mesto.students.nomoreparties.sbs', // ну а вдруг у меня сертификат закончится
-//     'localhost:3000',
-//   ],
-// }));
 
 app.get('/crash-test', () => {
   setTimeout(() => {
