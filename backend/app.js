@@ -20,9 +20,8 @@ const { PORT = 3000 } = process.env;
 const app = express();
 
 app.use(cors({
-  origin: ['http://localhost:3001',
+  origin:
     'https://mesto.students.nomoreparties.sbs',
-    'http://mesto.students.nomoreparties.sbs'], // ну а вдруг у меня сертификат закончится,
   credentials: true,
 }));
 

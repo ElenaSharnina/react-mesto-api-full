@@ -1,4 +1,4 @@
-export const BASE_URL = "http://localhost:3000";
+export const BASE_URL = "https://api.mesto.students.nomoreparties.sbs";
 
 export function register(email, password) {
   return fetch(`${BASE_URL}/signup`, {
