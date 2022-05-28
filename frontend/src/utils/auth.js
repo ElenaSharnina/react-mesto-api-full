@@ -1,6 +1,13 @@
-export const BASE_URL = "https://api.mesto.students.nomoreparties.sbs";
+export const BASE_URL = "http://api.mesto.students.nomoreparties.sbs";
 
-export function register(email, password) {
+function checkResponse(res) {
+  if (res.status === 200 || 201) {
+    return res.json();
+  }
+  return Promise.reject(`${res.status}`);
+}
+
+export const register = (email, password) => {
   return fetch(`${BASE_URL}/signup`, {
     method: "POST",
     headers: {
@@ -8,13 +15,7 @@ export function register(email, password) {
     },
     body: JSON.stringify({ email, password }),
   })
-    .then((response) => {
-      return response.json();
-    })
-    .then((res) => {
-      return res;
-    })
-    .catch((err) => console.log(err));
+    .then(checkResponse);
 }
 
 export function authorize(email, password) {

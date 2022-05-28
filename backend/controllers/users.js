@@ -69,8 +69,9 @@ module.exports.createUser = (req, res, next) => {
     .then((hash) => User.create({
       name, about, avatar, email, password: hash,
     }))
-    .then(() => res.status(200).send({
-      name, about, avatar, email,
+    // eslint-disable-next-line no-shadow
+    .then((name, about, avatar, email) => res.status(200).send({
+      data: name, about, avatar, email,
     }))
     .catch((err) => {
       if (err.code === 11000) {

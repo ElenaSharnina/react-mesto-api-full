@@ -8,7 +8,7 @@ export const objConfig = {
   errorClass: 'modal__error_visible'
 }
 export const apiConfig = {
-  url: 'https://api.mesto.students.nomoreparties.sbs',
+  url: 'http://api.mesto.students.nomoreparties.sbs',
   headers: {
     'Content-Type': 'application/json',
     authorization: `Bearer ${localStorage.getItem('token')}`,

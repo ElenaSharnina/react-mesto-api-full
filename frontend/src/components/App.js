@@ -180,10 +180,11 @@ function App() {
     });
   }
 
+
   function handleLogin({ email, password }) {
-    auth.authorize(email, password).then((data) => {
-      console.log(data);
-      if (data) {
+    auth.authorize(email, password).then((res) => {
+      console.log(res);
+      if (res) {
         setEmail(email);
         setLoggedIn(true);
         history.push("/");
