@@ -197,18 +197,19 @@ function App() {
   }
 
   React.useEffect(() => {
-    auth.checkToken().then((data) => {
-      if (data) {
-        setEmail(data.email);
-        setLoggedIn(true);
-        history.push("/");
-      } else {
-        setLoggedIn(false);
-        console.log("error");
-      }
-    });
-
-  }, [history, loggedIn]);
+    const token = localStorage.getItem("token");
+    if (token) {
+      auth.checkToken(token).then((data) => {
+        if (data) {
+          setEmail(data.email);
+          setLoggedIn(true);
+          history.push("/");
+        } else {
+          console.log("error");
+        }
+      });
+    }
+  }, []);
 
   function closeInfoTooltip() {
     setIsInfoTooltipOpen(false);
