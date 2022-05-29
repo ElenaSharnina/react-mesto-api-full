@@ -44,7 +44,7 @@ app.post('/signup', celebrate({
     name: Joi.string().min(2).max(30),
     about: Joi.string().min(2).max(30),
     avatar: Joi.string().pattern(regexLink),
-  }).unknown(false),
+  }).unknown(true),
 }), createUser);
 
 app.use(requestLogger); // подключаем логгер запросов
