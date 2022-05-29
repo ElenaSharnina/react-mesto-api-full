@@ -49,18 +49,16 @@ function App() {
   }, [history, loggedIn]);
 
   function handleRegister({ email, password }) {
-    auth.register(email, password)
-      .then((res) => {
-        console.log(res);
-
+    auth.register(email, password).then((res) => {
+      console.log(res);
+      if (res.data) {
         setIsSuccess(true);
         setIsInfoTooltipOpen(true);
-      })
-      .catch(() => {
+      } else {
         setIsSuccess(false);
         setIsInfoTooltipOpen(true);
       }
-      );
+    });
   }
 
   function handleLogin({ email, password }) {
