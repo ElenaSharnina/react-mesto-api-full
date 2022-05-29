@@ -71,10 +71,8 @@ module.exports.createUser = (req, res, next) => {
     .then((hash) => User.create({
       name, about, avatar, email, password: hash,
     }))
-    .then(() => {
-      const savedUser = User.save();
-      const { password: removedPassword, ...result } = savedUser.toObject();
-      res.status(201).send({ data: result });
+    .then((user) => {
+      res.send({ data: user });
     })
     .catch((err) => {
       if (err.code === 11000) {
