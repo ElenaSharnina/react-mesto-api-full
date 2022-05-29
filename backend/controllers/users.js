@@ -1,4 +1,5 @@
 const jwt = require('jsonwebtoken');
+
 const { NODE_ENV, JWT_SECRET } = process.env;
 const bcrypt = require('bcryptjs');
 const User = require('../models/user');
@@ -70,10 +71,11 @@ module.exports.createUser = (req, res, next) => {
     .then((hash) => User.create({
       name, about, avatar, email, password: hash,
     }))
-    // eslint-disable-next-line no-shadow
-    .then((name, about, avatar, email) => res.status(200).send({
-      data: name, about, avatar, email,
-    }))
+    .then(() => {
+      const savedUser = User.save();
+      const { password: removedPassword, ...result } = savedUser.toObject();
+      res.status(201).send({ data: result });
+    })
     .catch((err) => {
       if (err.code === 11000) {
         next(new ConflictError('Пользователь с таким email уже зарегистрированн'));
