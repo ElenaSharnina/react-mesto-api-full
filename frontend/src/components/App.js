@@ -49,29 +49,32 @@ function App() {
   }, [history, loggedIn]);
 
   function handleRegister({ email, password }) {
-    auth.register(email, password).then((res) => {
-      console.log(res);
-      if (res.status === 200 || 201) {
+    auth.register(email, password)
+      .then((res) => {
+        console.log(res);
+
         setIsSuccess(true);
         setIsInfoTooltipOpen(true);
+      })
+      .catch(() => {
+        setIsSuccess(false);
+        setIsInfoTooltipOpen(true);
+      }
+      );
+  }
+
+  function handleLogin({ email, password }) {
+    auth.authorize(email, password).then((res) => {
+      console.log(res);
+      if (res) {
+        setLoggedIn(true);
+        setEmail(email);
+        history.push("/");
       } else {
         setIsSuccess(false);
         setIsInfoTooltipOpen(true);
       }
     });
-  }
-
-  function handleLogin({ email, password }) {
-    auth.authorize(email, password)
-      .then((res) => {
-        setLoggedIn(true);
-        setEmail(email);
-        history.push("/");
-      })
-      .catch(() => {
-        setIsSuccess(false);
-        setIsInfoTooltipOpen(true);
-      });
   }
 
   React.useEffect(() => {
