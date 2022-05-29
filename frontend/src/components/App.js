@@ -62,17 +62,16 @@ function App() {
   }
 
   function handleLogin({ email, password }) {
-    auth.authorize(email, password).then((res) => {
-      console.log(res);
-      if (res) {
+    auth.authorize(email, password)
+      .then((res) => {
         setLoggedIn(true);
         setEmail(email);
         history.push("/");
-      } else {
+      })
+      .catch(() => {
         setIsSuccess(false);
         setIsInfoTooltipOpen(true);
-      }
-    });
+      });
   }
 
   React.useEffect(() => {
