@@ -51,7 +51,7 @@ function App() {
   function handleRegister({ email, password }) {
     auth.register(email, password).then((res) => {
       console.log(res);
-      if (res.data) {
+      if (res.ok) {
         setIsSuccess(true);
         setIsInfoTooltipOpen(true);
       } else {
