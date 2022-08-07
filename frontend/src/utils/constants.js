@@ -7,5 +7,5 @@ export const objConfig = {
   errorClass: "modal__error_visible",
 };
 export const apiConfig = {
-  url: "https://api.mesto.students.nomoreparties.sbs",
+  url: "http://localhost:3000",
 };

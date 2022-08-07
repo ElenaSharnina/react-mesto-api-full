@@ -23,7 +23,7 @@ const { PORT = 3000 } = process.env;
 const app = express();
 
 app.use(cors({
-  origin: ['https://mesto.students.nomoreparties.sbs', 'http://mesto.students.nomoreparties.sbs'],
+  origin: '*',
   credentials: true,
 }));
 

@@ -81,7 +81,7 @@ function App() {
       api
         .getInitialCards(token)
         .then((data) => {
-          console.log(data);
+          console.log("cards", data);
           setCards(data);
         })
         .catch((err) => {
