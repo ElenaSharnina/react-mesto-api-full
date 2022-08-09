@@ -19,6 +19,9 @@
 `backend/` запутится на http://localhost:3000
 `frontend/` запутится на http://localhost:3001
 
+### Испоьзуемые версии:
+`npm: 8.1.2` `react: 17.0.2` `react-router-dom: 5.2.1` `node: v16.13.2`
+
 ## Используемые технологии:
 
 * Верстка на гридах и флексах;
@@ -52,5 +55,7 @@
 <img src="https://github.com/devicons/devicon/blob/master/icons/mysql/mysql-original-wordmark.svg" title="MySQL"  alt="MySQL" width="40" height="40"/>&nbsp;
 <img src="https://github.com/devicons/devicon/blob/master/icons/nodejs/nodejs-original-wordmark.svg" title="NodeJS" alt="NodeJS" width="40" height="40"/>&nbsp;
 
-
-
+## Планы по доработке проекта:
+- Переписать фронтенд на 6-ю версию роутов
+- Сделать деплой на бесплатном хостинге
+- Развертывание проекта на другой NoSQL базе данных
